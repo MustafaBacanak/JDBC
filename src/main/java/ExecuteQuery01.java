@@ -47,5 +47,10 @@ public class ExecuteQuery01 {
             System.out.print(result2.getInt(1) + " - " + result2.getString(2) + " - " + result2.getInt(3));
 
         }
+        con.close();
+        st.close();
+        result.close();
+        result1.close();
+        result2.close();
     }
 }

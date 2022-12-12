@@ -10,13 +10,13 @@ public class CallableStatement01 {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
         Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techproed",
-                "postgres", "ŞİFRENİZ");
+                "postgres", "4505096sql");
         Statement st = con.createStatement();
 
         //CallableStatement ile function cagirmayi parametrelendirecegiz
 
         //1. Adım :  Functin kodunu yaz
-        String sql1="CREATE OR REPLACE FUNCTION  toplamaF(x NUMERIC,y NUMERIC)  \n" +
+        String sql1 = "CREATE OR REPLACE FUNCTION  toplamaF(x NUMERIC,y NUMERIC)  \n" +
                 "RETURNS NUMERIC\n" +
                 "LANGUAGE plpgsql\n" +
                 "AS\n" +
@@ -32,12 +32,12 @@ public class CallableStatement01 {
         st.execute(sql1);
 
         //3. Adım : Function'i cagir.
-        CallableStatement cst1=con.prepareCall("{? = call toplamaF(?,?)}");
+        CallableStatement cst1 = con.prepareCall("{? = call toplamaF(?,?)}");
 
         //4. Adım : Return icin registerOurParameter() methodunu,parametreler icin ise set() methodlarini uygula
-        cst1.registerOutParameter(1,Types.NUMERIC);
-        cst1.setInt(2,6);
-        cst1.setInt(3,4);
+        cst1.registerOutParameter(1, Types.NUMERIC);
+        cst1.setInt(2, 6);
+        cst1.setInt(3, 4);
 
         //5. Adım : execute() methodu ile CallableStatement'i calistir
         cst1.execute();
@@ -49,7 +49,7 @@ public class CallableStatement01 {
         // Örnek 2 : Koninin hacmini hesaplayan bir function yazın.
 
         //1. Adım :  Functin kodunu yaz
-        String sql2="CREATE OR REPLACE FUNCTION  konininHacmiF(r NUMERIC,h NUMERIC)  \n" +
+        String sql2 = "CREATE OR REPLACE FUNCTION  konininHacmiF(r NUMERIC,h NUMERIC)  \n" +
                 "RETURNS NUMERIC\n" +
                 "LANGUAGE plpgsql\n" +
                 "AS\n" +
@@ -65,22 +65,22 @@ public class CallableStatement01 {
         st.execute(sql2);
 
         //3. Adım : Function'i cagir.
-        CallableStatement cst2=con.prepareCall("{? = call konininHacmiF(?,?)}");
+        CallableStatement cst2 = con.prepareCall("{? = call konininHacmiF(?,?)}");
 
         //4. Adım : Return icin registerOurParameter() methodunu,parametreler icin ise set() methodlarini uygula
-        cst2.registerOutParameter(1,Types.NUMERIC);
-        cst2.setInt(2,1);
-        cst2.setInt(3,6);
+        cst2.registerOutParameter(1, Types.NUMERIC);
+        cst2.setInt(2, 1);
+        cst2.setInt(3, 6);
 
         //5. Adım : execute() methodu ile CallableStatement'i calistir
         cst2.execute();
 
         //6. Adım : Sonucu cagirmak icin return data type'ine gore
-        System.out.printf("%.2f",cst2.getBigDecimal(1));
+        System.out.printf("%.2f", cst2.getBigDecimal(1));
 
-
-
-
-
+        con.close();
+        st.close();
+        cst1.close();
+        cst2.close();
     }
 }

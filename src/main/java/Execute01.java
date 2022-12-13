@@ -12,7 +12,7 @@ public class Execute01{
 
         //2. Adım: Datbase'e bağlan
         Connection con;
-        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techproed","postgres","ŞİFRENİZ");
+        con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techproed","postgres","4505096sql");
 
         //3. Adım: Statement oluştur.
         Statement st = con.createStatement();

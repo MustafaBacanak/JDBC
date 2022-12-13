@@ -8,10 +8,11 @@ public class Test01 {
     public void test01(){
         assertEquals("1","1");
 
-    }
 
+    }
     @Test
     public void test02(){
+        assertEquals(2,4/2);
 
     }
 }

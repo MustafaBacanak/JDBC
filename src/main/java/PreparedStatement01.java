@@ -6,7 +6,7 @@ public class PreparedStatement01 {
 
         Class.forName("org.postgresql.Driver");
         Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techproed",
-                "postgres", "ŞİFRENİZ");
+                "postgres", "4505096sql");
         Statement st = con.createStatement();
 
         /*

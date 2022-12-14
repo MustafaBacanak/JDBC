@@ -46,7 +46,6 @@ public class CountriesTest {
 
         // User sends the query to get the region ids from "countries" table
         String sql1 = "SELECT region_id FROM countries";
-
         ResultSet resultSet1 = statement.executeQuery(sql1);
         List<Integer> ids = new ArrayList<>();
 
